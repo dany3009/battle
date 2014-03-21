@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Sea Battle{% endblock %}
+{% block extrahead %}
+    <script src="{{ STATIC_URL }}js/game.js" type="text/javascript"></script>
+{% endblock %}
+
+{% block content %}
+<center><h1>Sea Battle</h1></center>
+<center><button class="btn btn-large" id="start">Start Game</button></center>
+
+<div class="row-fluid game_field">
+    <div class="your_field span12">
+        <div class="ships_pool"></div>
+        <div class="battle_grid"></div>
+
+        <div class="place_ships span6">
+            <a id="random">Random place </a>
+            <a id="constructor"> Place your ships</a>
+        </div>
+    </div>
+
+    <div class="enemy_field span6">
+        <div class="battle_grid"></div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,113 @@
+.header {
+    background-color: #e5e5e5;
+    margin: 0;
+}
+
+.header_container {
+    margin: 0 auto;
+}
+
+.logo {
+    float: left;
+}
+
+a {
+    text-decoration: none;
+    color: #006dcc;
+}
+
+a:hover {
+    text-decoration: none;
+    border-bottom: 1px dotted #006dcc;
+}
+
+.auth {
+    float: right;
+}
+
+.content {
+    margin-top: 30px;
+}
+
+.game_field {
+    margin-top: 30px;
+}
+
+.battle_field {
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+.battle_field tr td {
+    width: 30px;
+    height: 30px;
+    border: #0049B4 1px solid;
+}
+
+.cell {
+    width: 30px;
+    height: 30px;
+    padding: 0;
+}
+
+.cell:hover {
+    background-color: #F5F4B0;
+}
+
+.enemy_field {
+    display: none !important;
+}
+
+.ships_pool {
+    position: absolute;
+    width: 300px;
+}
+
+.pool_line {
+    margin: 15px 5px !important;
+}
+
+.ship {
+    height: 29px;
+    float: left;
+    margin: 0 15px;
+    border: 2px solid blue;
+    background-color: rgba(0,0,255,0.05);
+}
+
+.deck4 {
+    width: 122px;
+}
+
+.deck3 {
+    width: 90px;
+}
+
+.deck2 {
+    width: 60px;
+}
+
+.deck1 {
+    width: 30px;
+}
+
+.place_ships {
+    width: 230px !important;
+    float: none !important;
+    margin: 20px auto !important;
+}
+
+.place_ships a {
+    cursor: pointer;
+}
+
+#constructor {
+    float: right;
+}
+
+footer {
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    background: #e5e5e5;
+}

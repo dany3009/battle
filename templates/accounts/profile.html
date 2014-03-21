@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}{{ data.user }}'s Profile{% endblock %}
+{% block extrahead %}{% endblock %}
+
+{% block content %}
+<h1>{{ data.user }}</h1>
+
+    <div class="span12">
+        <p>Games played: {{ data.games_played }}</p>
+        <p>Win games: {{ data.wins }}</p>
+        <p>Loose games: {{ data.looses }}</p>
+        <p>Total shots: {{ data.total_shots }}</p>
+        <p>Destroy ships: {{ data.ships_destroyed }}</p>
+    </div>
+
+{% endblock %}
