@@ -29,6 +29,12 @@ a:hover {
     margin-top: 30px;
 }
 
+#notifications {
+    text-align: center;
+    margin: 20px 0;
+    height: 30px;
+}
+
 .game_field {
     margin-top: 30px;
 }
@@ -41,7 +47,7 @@ a:hover {
 .battle_field tr td {
     width: 30px;
     height: 30px;
-    border: #0049B4 1px solid;
+    border: #b4b4ff 1px solid;
 }
 
 .cell {
@@ -55,39 +61,86 @@ a:hover {
 }
 
 .enemy_field {
-    display: none !important;
+    /*display: none !important;*/
 }
 
 .ships_pool {
+    display: none;
     position: absolute;
     width: 300px;
 }
 
 .pool_line {
+    height: 30px;
     margin: 15px 5px !important;
 }
 
 .ship {
-    height: 29px;
     float: left;
-    margin: 0 15px;
+    z-index: 999;
     border: 2px solid blue;
-    background-color: rgba(0,0,255,0.05);
+    background-color: rgba(0,0,255,0.10);
 }
 
-.deck4 {
-    width: 122px;
+.ship_container {
+    margin-right: 30px;
+    height: 30px;
+    float: left;
 }
 
-.deck3 {
+.ship_4 {
+    width: 120px;
+}
+
+.ship_3 {
     width: 90px;
 }
 
-.deck2 {
+.ship_2 {
     width: 60px;
 }
 
-.deck1 {
+.ship_1 {
+    width: 30px;
+}
+
+.deck4[data-position="h"] {
+    height: 29px;
+    width: 120px;
+}
+
+.deck4[data-position="v"] {
+    height: 120px;
+    width: 29px;
+}
+
+.deck3[data-position="h"] {
+    height: 29px;
+    width: 90px;
+}
+
+.deck3[data-position="v"] {
+    height: 90px;
+    width: 29px;
+}
+
+.deck2[data-position="h"] {
+    height: 29px;
+    width: 60px;
+}
+
+.deck2[data-position="v"] {
+    height: 60px;
+    width: 29px;
+}
+
+.deck1[data-position="h"] {
+    height: 29px;
+    width: 30px;
+}
+
+.deck1[data-position="v"] {
+    height: 29px;
     width: 30px;
 }
 
@@ -101,8 +154,12 @@ a:hover {
     cursor: pointer;
 }
 
-#constructor {
+#constructor, #constructor_close {
     float: right;
+}
+
+#constructor_close {
+    display: none;
 }
 
 footer {

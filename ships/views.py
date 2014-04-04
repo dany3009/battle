@@ -9,6 +9,7 @@ class BattleView(View):
     def get(self, request, *args, **kwargs):
         data = {
             'range': range(10),
+            'pool_range': range(4, 0, -1),
         }
         return render_to_response('ships/battle.html', {'data': data},
                                   RequestContext(request))
