@@ -35,6 +35,21 @@ a:hover {
     height: 30px;
 }
 
+#notifications * {
+    display: none;
+}
+
+.invite_friend {
+    float: right;
+    position: relative;
+    top: -50px;
+}
+
+.invite_friend input {
+    float: left;
+    width: 300px;
+}
+
 .game_field {
     margin-top: 30px;
 }
@@ -50,18 +65,18 @@ a:hover {
     border: #b4b4ff 1px solid;
 }
 
-.cell {
+.cell, .enemy_cell {
     width: 30px;
     height: 30px;
     padding: 0;
 }
 
-.cell:hover {
-    background-color: #F5F4B0;
+.cell:hover, .enemy_cell:hover {
+    background-color: rgba(0, 255, 255, 0.1);
 }
 
-.enemy_field {
-    /*display: none !important;*/
+.cell[data-value="1"] {
+    background-color: rgba(0, 0, 255, 0.15);
 }
 
 .ships_pool {
@@ -79,7 +94,7 @@ a:hover {
     float: left;
     z-index: 999;
     border: 2px solid blue;
-    background-color: rgba(0,0,255,0.10);
+    background-color: rgba(0, 0, 255, 0.05);
 }
 
 .ship_container {

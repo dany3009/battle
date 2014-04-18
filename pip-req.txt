@@ -1,3 +1,6 @@
 django==1.4.5
 south
 django-debug_toolbar
+tornadio2
+redis
+tornado-redis

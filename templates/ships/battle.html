@@ -2,14 +2,32 @@
 {% load sea_battle %}
 {% block title %}Sea Battle{% endblock %}
 {% block extrahead %}
+    <script src="{{ STATIC_URL }}js/socket.io.js" type="text/javascript"></script>
     <script src="{{ STATIC_URL }}js/game.js" type="text/javascript"></script>
+    {% if not request.user.is_authenticated %}
+    <script>
+    window.location = '{% url accounts:login %}?next={{ request.path }}'
+    </script>
+    {% endif %}
 {% endblock %}
 
 {% block content %}
 <center><h1>Sea Battle</h1></center>
-<center><button class="btn btn-large" id="start">Start Game</button></center>
+{% if data.current_game_id %}
+<center><button class="btn btn-large" id="ready">Ready to play</button></center>
+<div class="invite_friend span5">
+    <span>Send this link to your friend</span>
+    <input type="text" value="{{ request.build_absolute_uri }}" readonly />
+</div>
+{% else %}
+<center><a class="btn btn-large" id="start" href="{% url ships:battle %}{{ data.game_id }}">Play with friend</a></center>
+{% endif %}
 
-<div id="notifications" class="span12"></div>
+<div id="notifications" class="span12">
+    <div id="placed_error" class="alert alert-error">Not all ships placed!</div>
+    <div id="connect" class="alert alert-success">Successful connected to server!</div>
+    <div id="disconnect" class="alert alert-error">Disconnected from server!</div>
+</div>
 
 <div class="row-fluid game_field">
     <div class="your_field span6">
@@ -45,7 +63,7 @@
                 {% for i in data.range %}
                     <tr>
                     {% for j in data.range %}
-                        <td><div class="cell" data-x="{{ j }}" data-y="{{ i }}" data-value="0">&nbsp;</div></td>
+                        <td><div class="enemy_cell" data-x="{{ j }}" data-y="{{ i }}" data-value="0">&nbsp;</div></td>
                     {% endfor %}
                     </tr>
                 {% endfor %}

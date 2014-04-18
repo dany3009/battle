@@ -175,6 +175,9 @@ LOGGING = {
     }
 }
 
+SESSION_ENGINE = 'redis_sessions.session'
+
+SESSION_COOKIE_HTTPONLY = False
 try:
     from local_settings import *
 except:
