@@ -176,8 +176,11 @@ LOGGING = {
 }
 
 SESSION_ENGINE = 'redis_sessions.session'
-
 SESSION_COOKIE_HTTPONLY = False
+
+SOCKETIO_HOST = ''
+SOCKETIO_PORT = ''
+
 try:
     from local_settings import *
 except:

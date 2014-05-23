@@ -1,12 +1,15 @@
 
 var BATTLE_FIELD = [];
-var socket;
-window.onbeforeunload = false;
+var socket, sock;
 
 $(document).ready(function() {
 
-    connect();
-    random_ships();
+    $.cookie('battle_field', BATTLE_FIELD.toString(), { expires: 365, path: '/' });
+    if ($.cookie('battle_field')){
+        build_from_cookie($.cookie('battle_field'));
+    } else {
+        random_ships();
+    }
 
     $('#constructor').click(function(){
         $(this).hide();
@@ -26,6 +29,10 @@ $(document).ready(function() {
 
     $('#random').click(function(){
         random_ships();
+    });
+
+    $('#ready').click(function(){
+        connect();
     });
 
     $('.ship').draggable({
@@ -128,6 +135,19 @@ function close_construcror(){
     $('.ships_pool').hide();
     $('.your_field').attr('class', 'your_field span6');
     $('.enemy_field').show()
+}
+
+function build_from_cookie(field){
+    var index = 0, BATTLE_FIELD = [], cookie_fild = field.split(',');
+
+    for (i=0; i<10; i++){
+        BATTLE_FIELD[i] = [];
+        for (j=0; j<10; j++){
+            BATTLE_FIELD[i][j] = cookie_fild[index];
+            $("div.cell[data-x='"+j+"'][data-y='"+i+"']").attr('data-value', parseInt(cookie_fild[index]));
+            index += 1;
+        }
+    }
 }
 
 function random_ships(){
@@ -254,6 +274,7 @@ function update_matrix(){
             BATTLE_FIELD[i][j] = $("div.cell[data-x='"+j+"'][data-y='"+i+"']").attr('data-value');
         }
     }
+    $.cookie('battle_field', BATTLE_FIELD.toString());
 }
 
 function connect(){
@@ -262,18 +283,47 @@ function connect(){
     socket.on('connect', function(){
         $('#connect').show().fadeOut(2000);
         socket.emit('get_user', $('.auth a:first-child').text());
+//        socket.join('room');
     });
 
     socket.on('disconnect', function() {
         $('#disconnect').show().fadeOut(2000);
-        setTimeout(socket.socket.reconnect, 30);
+        setTimeout(socket.socket.reconnect, 3000);
     });
 
     socket.on('message', function(msg) {
         console.log(msg);
     });
+
+
+//   sock = new SockJS('http://192.168.1.6:8001/ships');
+//
+//   sock.onopen = function() {
+//       $('#connect').show().fadeOut(2000);
+//       sock.send(JSON.stringify({
+//           'username': $('.auth a:first-child').text()
+//       }));
+//   };
+//
+//   sock.onmessage = function(msg) {
+//       console.log('message', msg.data);
+//   };
+//
+//   sock.onclose = function() {
+//       $('#disconnect').show().fadeOut(2000);
+//       setTimeout(sock.reconnect, 3000);
+//   };
+
+//    socket = new io.Socket();
+//    socket.connect();
+
 }
 
 function make_shoot(cell){
     socket.json.send({x: $(cell).attr('data-x'), y: $(cell).attr('data-y')});
+
+//    sock.send(JSON.stringify({
+//       'x': $(cell).attr('data-x'),
+//       'y': $(cell).attr('data-y')
+//    }));
 }

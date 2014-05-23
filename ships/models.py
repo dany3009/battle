@@ -9,19 +9,16 @@ class Game(models.Model):
     start = models.DateTimeField(auto_now_add=True)
     end = models.DateTimeField(null=True, blank=True)
     game_id = models.CharField(max_length=255, null=True, blank=True)
+    room_id = models.CharField(max_length=255, null=True, blank=True)
 
     def __unicode__(self):
-        try:
-            user1 = self.user1.username
-        except:
-            user1 = 'NoneUser'
 
-        try:
-            user2 = self.user2.username
-        except:
-            user2 = 'NoneUser'
+        if not self.user2:
+            user2_name = 'NoneUser'
+        else:
+            user2_name = self.user2.username
 
-        return '{} vs {}'.format(user1, user2)
+        return '{} vs {}'.format(self.user1.username, user2_name)
 
 
 class BattleLog(models.Model):

@@ -24,7 +24,8 @@ class Command(BaseCommand):
     def shutdown(self):
         self.http_server.stop()
         io_loop = ioloop.IOLoop.instance()
-        io_loop.add_timeout(time.time() + 2, io_loop.stop)
+        # io_loop.add_timeout(time.time() + 1, io_loop.stop)
+        io_loop.stop()
 
     def handle(self, *args, **options):
         if len(args) == 1:
@@ -44,4 +45,5 @@ class Command(BaseCommand):
         signal.signal(signal.SIGTERM, self.sig_handler)
         signal.signal(signal.SIGINT, self.sig_handler)
 
+        print 'Server started on port {}'.format(port)
         ioloop.IOLoop.instance().start()

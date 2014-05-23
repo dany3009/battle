@@ -12,7 +12,6 @@ def generate_game_id(length):
 class BattleView(View):
 
     def get(self, request, *args, **kwargs):
-        print request.session.session_key
         game_id = generate_game_id(10)
         data = {
             'range': range(10),

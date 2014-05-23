@@ -39,13 +39,13 @@ a:hover {
     display: none;
 }
 
-.invite_friend {
-    float: right;
-    position: relative;
-    top: -50px;
+#invite_friend {
+    position: absolute;
+    top: 103px;
+    right: 455px;
 }
 
-.invite_friend input {
+#invite_friend input {
     float: left;
     width: 300px;
 }
